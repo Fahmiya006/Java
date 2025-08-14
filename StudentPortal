@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+class Studentclg {
+
+    private class PrivateDetails {
+        String aadhaarNumber;
+        String parentContact;
+
+        PrivateDetails(String aadhaar, String parentPhone) {
+            this.aadhaarNumber = aadhaar;
+            this.parentContact = parentPhone;
+        }
+
+        void showPrivateInfo() {
+            System.out.println("Aadhaar: " + aadhaarNumber);
+            System.out.println("Parent Contact: " + parentContact);
+        }
+    }
+
+    public class PublicDetails {
+        String name;
+        int age;
+        String department;
+
+        PublicDetails(String name, int age, String dept) {
+            this.name = name;
+            this.age = age;
+            this.department = dept;
+        }
+
+        void showPublicInfo() {
+            System.out.println("Name: " + name);
+            System.out.println("Age: " + age);
+            System.out.println("Department: " + department);
+        }
+    }
+
+    void viewPrivateData(String aadhaar, String parentPhone) {
+        PrivateDetails p = new PrivateDetails(aadhaar, parentPhone);
+        p.showPrivateInfo();
+    }
+}
+
+public class StudentPortal {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Age: ");
+        int age = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Department: ");
+        String dept = sc.nextLine();
+
+        System.out.print("Enter Aadhaar: ");
+        String aadhaar = sc.nextLine();
+
+        System.out.print("Enter Parent Contact: ");
+        String parentPhone = sc.nextLine();
+
+        Studentclg s = new Studentclg();
+        Studentclg.PublicDetails pub = s.new PublicDetails(name, age, dept);
+        pub.showPublicInfo();
+
+        System.out.println("Private class can't be accessed directly.");
+        System.out.println("Accessing private data through method:");
+        s.viewPrivateData(aadhaar, parentPhone);
+    }
+}
