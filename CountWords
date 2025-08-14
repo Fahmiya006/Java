@@ -1,0 +1,15 @@
+import java.util.Scanner;
+public class CountWords {
+    public static void main(String[] args) {
+        System.out.println("2024503003-fathima fahmiya s");
+        int i=0;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter a string to count the number of words:");
+        String s1=sc.nextLine();
+        String[] ss=s1.split(" ");
+        for(String a:ss){
+            i++;
+        }
+        System.out.println("number of words:"+i);
+    }
+}
