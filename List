@@ -1,0 +1,67 @@
+
+class LinkedList {
+    private static class Node {
+        int data;
+        Node next;
+        Node(int d) {
+            data = d;
+        }
+    }
+
+    private Node head;
+
+    void add(int data) {
+        Node n = new Node(data);
+        if (head == null) {
+            head = n;
+            return;
+        }
+        Node t = head;
+        while (t.next != null) t = t.next;
+        t.next = n;
+    }
+
+    void delete(int key) {
+        if (head == null) return;
+        if (head.data == key) {
+            head = head.next;
+            return;
+        }
+        Node t = head;
+        while (t.next != null && t.next.data != key) t = t.next;
+        if (t.next != null) t.next = t.next.next;
+    }
+
+    void display() {
+        Node t = head;
+        while (t != null) {
+            System.out.print(t.data + " ");
+            t = t.next;
+        }
+        System.out.println();
+    }
+
+    boolean search(int key) {
+        Node t = head;
+        while (t != null) {
+            if (t.data == key) return true;
+            t = t.next;
+        }
+        return false;
+    }
+}
+
+public class List {
+    public static void main(String[] args) {
+        System.out.println("2024503003-Fathima Fahmiya S");
+        LinkedList l = new LinkedList();
+        l.add(1);
+        l.add(2);
+        l.add(3);
+        l.display();
+        l.delete(2);
+        l.display();
+        System.out.println(l.search(3));
+        System.out.println(l.search(5));
+    }
+}
