@@ -1,0 +1,102 @@
+import java.util.Scanner;
+
+public class VersionCompare {
+    public static void main(String[] args) {
+        System.out.println("2024503003 - Fathima Fahmiya S");
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter first version:");
+        String v1 = sc.nextLine().trim();
+        System.out.println("Enter second version:");
+        String v2 = sc.nextLine().trim();
+
+        // Basic validation: only digits and dots
+        if (!isValidVersion(v1) || !isValidVersion(v2)) {
+            System.out.println("Invalid input: versions must contain only digits and dots (e.g., 15.10.10)");
+            sc.close();
+            return;
+        }
+
+        String[] a1 = v1.split("\\.");
+        String[] a2 = v2.split("\\.");
+
+        int len;
+        if (a1.length > a2.length) {
+            len = a1.length;
+        } else {
+            len = a2.length;
+        }
+
+        for (int i = 0; i < len; i++) {
+            String p1;
+            if (i < a1.length) {
+                p1 = a1[i];
+            } else {
+                p1 = "0";
+            }
+
+            String p2;
+            if (i < a2.length) {
+                p2 = a2[i];
+            } else {
+                p2 = "0";
+            }
+
+            int cmp = compareNumericStrings(p1, p2);
+            if (cmp > 0) {
+                System.out.println(v1 + " is greater than " + v2 + " as " + displayNumber(p1) + " > " + displayNumber(p2));
+                sc.close();
+                return;
+            } else if (cmp < 0) {
+                System.out.println(v2 + " is greater than " + v1 + " as " + displayNumber(p2) + " > " + displayNumber(p1));
+                sc.close();
+                return;
+            }
+        }
+
+        System.out.println("Both versions are equal.");
+        sc.close();
+    }
+
+    // Ensure only digits and dots
+    private static boolean isValidVersion(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (!(ch == '.' || (ch >= '0' && ch <= '9'))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Compare two non-negative integers written as strings without parsing to int
+    private static int compareNumericStrings(String x, String y) {
+        String sx = stripLeadingZeros(x);
+        String sy = stripLeadingZeros(y);
+
+        if (sx.length() == 0) sx = "0";
+        if (sy.length() == 0) sy = "0";
+
+        if (sx.length() > sy.length()) return 1;
+        if (sx.length() < sy.length()) return -1;
+
+        int res = sx.compareTo(sy);
+        if (res > 0) return 1;
+        if (res < 0) return -1;
+        return 0;
+    }
+
+    private static String stripLeadingZeros(String s) {
+        int i = 0;
+        while (i < s.length() && s.charAt(i) == '0') {
+            i++;
+        }
+        return s.substring(i);
+    }
+
+    private static String displayNumber(String s) {
+        String t = stripLeadingZeros(s);
+        if (t.length() == 0) t = "0";
+        return t;
+    }
+}
