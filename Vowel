@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Vowel {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("2024503003-Fathima Fahmiya S");
+        String input = sc.nextLine();
+        input = toLower(input);
+        char[] characters = toCharArray(input);
+        countVowels(characters);
+        sc.close();
+    }
+
+    static String toLower(String str) {
+        return str.toLowerCase();
+    }
+
+    static char[] toCharArray(String str) {
+        return str.toCharArray();
+    }
+
+    static void countVowels(char[] chars) {
+        int a = 0, e = 0, i = 0, o = 0, u = 0;
+
+        for (char ch : chars) {
+            switch (ch) {
+                case 'a' -> a++;
+                case 'e' -> e++;
+                case 'i' -> i++;
+                case 'o' -> o++;
+                case 'u' -> u++;
+            }
+        }
+
+        System.out.println("a: " + a);
+        System.out.println("e: " + e);
+        System.out.println("i: " + i);
+        System.out.println("o: " + o);
+        System.out.println("u: " + u);
+    }
+}
