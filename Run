@@ -1,0 +1,29 @@
+class Test {
+    int a = 10;
+    static int b;
+
+    static {
+        b = 50;
+        System.out.println("Static block: b = " + b);
+    }
+
+    void show() {
+        System.out.println("Instance method: a = " + a);
+    }
+
+    static void display() {
+        System.out.println("Static method: b = " + b);
+
+        Test obj = new Test();
+        System.out.println("Accessing a using object: " + obj.a);
+        obj.show();
+    }
+}
+
+class Run {
+    public static void main(String[] args) {
+        System.out.println("2024503003-Fathima Fahmiya S");
+        Test.display();
+    }
+}
+
